@@ -22,7 +22,7 @@ Requirements:
 4. Open _Disks_ and select OS containing Disk (the disk that you want to create the image from) from left menue
 5. Select more options from top right corner and select _Create Disk Image..._ 
 
- <img src="https://github.com/mojtaba1989/vehicle_build/blob/master/docs/Screenshot1.png" alt="Disks" width="400"/>
+ <img src="https://github.com/mojtaba1989/apsrc_tools/blob/master/docs//Screenshot1.png" alt="Disks" width="400"/>
                 
 7. Select the external hard drive as the destination for creating disk image. This process will take about 20~40 mins
 8. Reboot the Spectra 
@@ -68,7 +68,7 @@ nvidia-smi
 ```
 _sample proper returned message_
 
-<img src="https://github.com/mojtaba1989/vehicle_build/blob/master/docs/nvidia-smi.png" alt="Disks" width="400"/>
+<img src="https://github.com/mojtaba1989/apsrc_tools/blob/master/docs//nvidia-smi.png" alt="Disks" width="400"/>
 
 ## Installing CUDA 10
 
