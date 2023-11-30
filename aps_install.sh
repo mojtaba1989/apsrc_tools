@@ -18,33 +18,31 @@ Help()
    echo "options:"
    echo "-n     workspace name, default: apsrc_ws"
    echo "-h     help."
-   echo "-o     log file name, default:aps_tools_log"
+   echo "-o     log file name, default:aps_tools.log"
    echo "-i     list file, default:github.list"
    echo
 }
 
-log_file="txt"
+log_file="aps_tools.log"
 workspace_name="apsrc_ws"
 list="github.list"
 
-while getopts "n:ho:" opt; do
+while getopts "n:ho:i:" opt; do
     case $opt in
         h) Help; exit 0;;
         o) log_file=$OPTARG;;
         n) workspace_name=$OPTARG;;
         i) list=$OPTARG;;
-        \?) echo "${R}Error: Invalid option${NC}";exit 1;;
+        \?) echo "${R}Error: Invalid option${NC}";exit 0;;
     esac
 done 
 
-devel_list="aps_tools_log.${extension}"
-if [ $extension -ne "txt" ]; then echo "List of packages installed by aps tools under ${workspace_name}" > $log_file; fi
+exec 3<> $log_file
 
 if test -f $list; then 
     echo "${G}Found ${list}${NC}"
 else
-    echo "${R}${list} cannot find${NC}"
-    echo "${R}${list} cannot find${NC}" >> $log_file
+    echo "${R}${list} cannot found${NC}" 
     exit 1
 fi
 
@@ -55,6 +53,7 @@ if test -d /home/${USER}/${workspace_name}; then
     mkdir -p home/${USER}/${workspace_name}/src
     if [ $? -ne 0 ]; then
         echo "${Y}${workspace_name} created${NC}"
+
 
 
 
