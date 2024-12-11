@@ -18,7 +18,7 @@ if [ ! -f $check_list ]; then echo "No list has selected"; exit 1; fi
 
 while IFS= read -r line; do
  temp=$(echo ros-$ROS_DISTRO-$line | tr '_' '-')
- eval sudo apt install $temp
+ eval sudo apt install -y $temp
  if [ $? -eq "0" ]; then
   echo "${line}: ${G}Installed successfully${NC}"
   echo "Check for rosversion ${line} ..."

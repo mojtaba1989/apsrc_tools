@@ -291,6 +291,31 @@ sh apt_install.sh
 AUTOWARE_COMPILE_WITH_CUDA=1 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Release
 ```
 
-
+### Fixing GRUB BOOT
+1. Finding the root filesystem - Type ls to list all partitions that GRUB sees:
+```
+grub> ls
+(hd0) (hd0,msdos2) (hd0,msdos1)
+```
+2. Check each root and find the one that the content matches the target OS
+```
+grub> ls (hd0,1)/
+lost+found/ bin/ boot/ cdrom/ dev/ etc/ home/  lib/
+lib64/ media/ mnt/ opt/ proc/ root/ run/ sbin/ 
+srv/ sys/ tmp/ usr/ var/ vmlinuz vmlinuz.old 
+initrd.img initrd.img.old
+```
+You can double check filesystem on previously found root
+```
+grub> cat (hd0,1)/etc/issue
+Ubuntu 14.04 LTS n l
+```
+3. Set the root config file and boot. Select the latest kernel using ***tab***. _Note:_ in this example (hd0,gpt1) is sda1, or (hd1,gpt4) is sdb4.
+```
+grub> set root=(hd0,1)
+grub> linux /boot/vmlinuz-3.13.0-29-generic root=/dev/sda1
+grub> initrd /boot/initrd.img-3.13.0-29-generic
+grub> boot
+```
 
 
