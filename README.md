@@ -292,6 +292,7 @@ AUTOWARE_COMPILE_WITH_CUDA=1 colcon build --cmake-args -DCMAKE_BUILD_TYPE=Releas
 ```
 
 ### Fixing GRUB BOOT
+## One time boot
 1. Finding the root filesystem - Type ls to list all partitions that GRUB sees:
 ```
 grub> ls
@@ -317,5 +318,10 @@ grub> linux /boot/vmlinuz-3.13.0-29-generic root=/dev/sda1
 grub> initrd /boot/initrd.img-3.13.0-29-generic
 grub> boot
 ```
-
-
+## Permanent fix
+When you have successfully booted your system, run these commands to fix GRUB permanently:
+```
+update-grub
+update-install /dev/sda
+```
+When you run grub-install remember you’re installing it to the boot sector of your hard drive and not to a partition, so do not use a partition number like /dev/sda1
